@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- Google Maps API -->
-　　<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxDHNz3YciIi5bntA-wTGwEXOLEf10sPo"></script>
-　　<link rel="stylesheet" href="css/map.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxDHNz3YciIi5bntA-wTGwEXOLEf10sPo"></script>
+    <link rel="stylesheet" href="css/map.css">
 </head>
 <body>
     <div class="container">
@@ -31,7 +31,7 @@
             
             <div class="form-group">
                 <label for="interval">ロギング間隔 (秒):</label>
-                <input type="number" id="interval" min="10" value="20">
+                <input type="number" id="interval" min="10" value="60">
             </div>
             
             <div class="form-group">
@@ -43,13 +43,13 @@
         <div class="log" id="logContainer">
             <div>ログ:</div>
         </div>
-
+        
         <!-- 地図表示エリア -->
-　　　　<div class="map-container" id="mapContainer">
-　　　　  <div id="map"></div>
-  　　　　<button id="closeMapBtn">×</button>
-　　　　</div>
-　　　　<button id="showMapBtn" class="map-button" disabled>地図で表示</button>
+        <div class="map-container" id="mapContainer">
+            <div id="map"></div>
+            <button id="closeMapBtn">×</button>
+        </div>
+        <button id="showMapBtn" class="map-button" disabled>地図で表示</button>
         
         <div class="footer">
             バッテリー節約のため、使用しないときはロギングを停止してください。
