@@ -9,17 +9,18 @@ const Storage = {
         UI.log('設定が保存されました');
     },
     
-    // ローカルストレージにデータを保存
-    saveDataToStorage: function() {
-        try {
-            localStorage.setItem('locationData', JSON.stringify(locationData));
-            document.getElementById('sendDataBtn').disabled = false;
-            document.getElementById('downloadBtn').disabled = false;
-        } catch (e) {
-            UI.log('警告: ローカルストレージへの保存に失敗しました');
-            console.error('Storage error:', e);
-        }
-    },
+  // ローカルストレージにデータを保存
+saveDataToStorage: function() {
+    try {
+        localStorage.setItem('locationData', JSON.stringify(locationData));
+        document.getElementById('sendDataBtn').disabled = false;
+        document.getElementById('downloadBtn').disabled = false;
+        document.getElementById('showMapBtn').disabled = false; // 追加
+    } catch (e) {
+        UI.log('警告: ローカルストレージへの保存に失敗しました');
+        console.error('Storage error:', e);
+    }
+},
     
     // 設定の読み込み
     loadSettings: function() {
@@ -35,21 +36,21 @@ const Storage = {
         deviceId = document.getElementById('deviceId').value;
     },
     
-    // ローカルストレージからデータを読み込む
-    loadStoredData: function() {
-        try {
-            const storedData = localStorage.getItem('locationData');
-            if (storedData) {
-                locationData = JSON.parse(storedData);
-                
-                if (locationData.length > 0) {
-                    document.getElementById('sendDataBtn').disabled = false;
-                    document.getElementById('downloadBtn').disabled = false;
-                    UI.log(`${locationData.length}件の保存データを読み込みました`);
-                }
+   // ローカルストレージからデータを読み込む
+loadStoredData: function() {
+    try {
+        const storedData = localStorage.getItem('locationData');
+        if (storedData) {
+            locationData = JSON.parse(storedData);
+            
+            if (locationData.length > 0) {
+                document.getElementById('sendDataBtn').disabled = false;
+                document.getElementById('downloadBtn').disabled = false;
+                document.getElementById('showMapBtn').disabled = false; // 追加
+                UI.log(`${locationData.length}件の保存データを読み込みました`);
             }
-        } catch (e) {
-            console.error('Data loading error:', e);
         }
+    } catch (e) {
+        console.error('Data loading error:', e);
     }
-};
+}
