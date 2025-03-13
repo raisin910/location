@@ -18,6 +18,8 @@ function initApp() {
     document.getElementById('stopBtn').addEventListener('click', stopLogging);
     document.getElementById('sendDataBtn').addEventListener('click', sendData);
     document.getElementById('downloadBtn').addEventListener('click', downloadData);
+    document.getElementById('showMapBtn').addEventListener('click', showOnMap); // 追加
+    document.getElementById('closeMapBtn').addEventListener('click', Map.closeMap); // 追加
     
     document.getElementById('deviceId').addEventListener('change', Storage.saveSettings);
     document.getElementById('interval').addEventListener('change', Storage.saveSettings);
@@ -120,6 +122,7 @@ function sendData() {
         
         document.getElementById('sendDataBtn').disabled = true;
         document.getElementById('downloadBtn').disabled = true;
+        document.getElementById('showMapBtn').disabled = true;
     })
     .catch(error => {
         console.error('送信エラー詳細:', error);
@@ -156,4 +159,15 @@ function downloadData() {
     
     UI.updateStatus(`${locationData.length}件のデータをダウンロードしました`);
     UI.log(`データをJSONファイルとしてダウンロードしました (${locationData.length}件)`);
+}
+
+// 地図表示関数
+function showOnMap() {
+    if (locationData.length === 0) {
+        UI.updateStatus('表示するデータがありません。', true);
+        return;
+    }
+    
+    Map.showLocations(locationData);
+    UI.updateStatus('地図にデータを表示しました');
 }
